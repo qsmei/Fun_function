@@ -5,6 +5,8 @@ using StatsBase
 using BenchmarkTools
 using CSV,DataFrames
 
+#conversion from Fimpute format to Plink format
+
 num_file="/usr/home/qgg/qumei/Saija/jersey_test_genotypes.txt"
 map_file="/usr/home/qgg/qumei/Saija/snp_info_JER.txt"
 
