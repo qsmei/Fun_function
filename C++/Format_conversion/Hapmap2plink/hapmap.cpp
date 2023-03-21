@@ -147,4 +147,6 @@ int main(int argc, char* argv[]) {
 
   return 0;
 }
-	
+
+//compile command 
+// g++ -fopenmp hapmap.cpp -o hapmap
