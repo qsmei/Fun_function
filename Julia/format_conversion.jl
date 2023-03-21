@@ -79,4 +79,32 @@ end
 @btime  tmp=collect(a);for i in 1:2
 		c[i]=tmp[i]
 		end
-	 
+
+
+#works fine
+function fimpute_to_ped(num_file,output_file)
+
+		snp_num=CSV.read(num_file,DataFrame,header=false,ntasks=Threads.nthreads());
+
+		 n_IND=size(snp_num,1)
+		 n_SNP=size(snp_num,2)-3	
+		 ped_AGCT=Array{String1}(undef, n_IND,n_SNP*2) #only store SNP
+		 ped_id=zeros(Int64,n_IND,6)
+		 ped_id[:,1]=snp_num[:,1]
+		 ped_id[:,2]=snp_num[:,1]
+		
+		 #convert snp_num to ped 
+		@threads  for j in 1:n_SNP	
+						tmp1=snp_num[:,j+3]  
+						for i in 1:n_IND			
+							tmp=(num_AGCT(tmp1[i]))	
+							ped_AGCT[i,(2*j-1)]=tmp[1];	
+							ped_AGCT[i,(2*j)]=tmp[2];	
+						end 
+		     
+				end
+			
+		CSV.write(output_file, hcat(DataFrame(ped_id,:auto),DataFrame(ped_AGCT,:auto),makeunique=true),header=false,delim=" ");
+		
+		return ;
+end
